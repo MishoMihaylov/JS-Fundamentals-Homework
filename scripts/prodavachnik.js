@@ -79,4 +79,5 @@ function startApp() {
         let userId = userInfo._id;
         sessionStorage.setItem('userId', userId);
     }
+
 }
