@@ -219,9 +219,13 @@ function startApp() {
 
                     if (advert._acl.creator == sessionStorage['userId']) {
                         let deleteLink = $(`<a data-id="${advert._id}" href="#">[Delete]</a>`)
-                            .click(function() { deleteAdvert($(this).attr("data-id")) });
+                            .click(function () {
+                                deleteAdvert($(this).attr("data-id"))
+                            });
                         let editLink = $(`<a data-id="${advert._id}" href="#">[Edit]</a>`)
-                            .click(function() { loadAdvertForEdit($(this).attr("data-id")) });
+                            .click(function () {
+                                loadAdvertForEdit($(this).attr("data-id"))
+                            });
                         links = [deleteLink, ' ', editLink];
                     }
 
@@ -237,6 +241,7 @@ function startApp() {
                 $('#ads').append(advertsTable);
             }
         }
+    }
 
         // advertisement/create
     function createAdvert() {
@@ -274,7 +279,7 @@ function startApp() {
                 listAdverts();
             }
         }
-            }
+    }
 
     // advertisement/delete
     function deleteAdvert(advertId) {
@@ -342,11 +347,10 @@ function startApp() {
             headers: kinveyAuthHeaders,
             data: advertData,
             success: editAdvertSuccess
-            });
+        });
 
             function editAdvertSuccess(response) {
                 listAdverts();
             }
-        }
     }
 }
