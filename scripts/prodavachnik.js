@@ -216,7 +216,8 @@ function startApp() {
                     );
 
                 for (let advert of adverts) {
-                    let links = $(`<a data-id="${advert._id}" href="#">[Read More]</a>`)
+                    let links = [];
+                    let readMoreLink = $(`<a data-id="${advert._id}" href="#">[Read More]</a>`)
                         .click(function () {
                             "use strict";
                             displayAdvert($(this).attr("data-id"))
@@ -240,7 +241,8 @@ function startApp() {
                         $('<td>').text(advert.publisher),
                         $('<td>').text(advert.datePublished),
                         $('<td>').text(advert.price),
-                        $('<td>').append(links)
+                        $('<td>').append(links),
+                        $('<td>').append(readMoreLink)
                     ));
                 }
 
