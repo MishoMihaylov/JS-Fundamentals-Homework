@@ -218,10 +218,8 @@ function startApp() {
                 for (let advert of adverts) {
                     let links = [];
                     let readMoreLink = $(`<a data-id="${advert._id}" href="#">[Read More]</a>`)
-                        .click(function () {
-                            "use strict";
-                            displayAdvert($(this).attr("data-id"))
-                        });
+                        .click(function () {displayAdvert($(this).attr("data-id"))});
+                    links = [readMoreLink];
 
                     if (advert._acl.creator == sessionStorage['userId']) {
                         let deleteLink = $(`<a data-id="${advert._id}" href="#">[Delete]</a>`)
@@ -232,7 +230,7 @@ function startApp() {
                             .click(function () {
                                 loadAdvertForEdit($(this).attr("data-id"))
                             });
-                        links = [deleteLink, ' ', editLink];
+                        links = [readMoreLink, ' ', deleteLink, ' ', editLink];
                     }
 
                     advertsTable.append($('<tr>').append(
@@ -241,8 +239,7 @@ function startApp() {
                         $('<td>').text(advert.publisher),
                         $('<td>').text(advert.datePublished),
                         $('<td>').text(advert.price),
-                        $('<td>').append(links),
-                        $('<td>').append(readMoreLink)
+                        $('<td>').append(links)
                     ));
                 }
 
@@ -256,7 +253,7 @@ function startApp() {
             kinveyAppKey + "/adverts/" + advertId;
         const kinveyAuthHeaders = {
             'Authorization': "Kinvey " + sessionStorage.getItem('authToken'),
-        }
+        };
 
         $.ajax({
             method: "GET",
